@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  my_finance_backend:
+    build:
+      context: ./backend
+      dockerfile: ./../BackDockerfile
+    image: my_finance_backend
+    container_name: my_finance_backend
+    tty: true
+    working_dir: /var/www/backend
+    volumes:
+      - ./backend:/var/www/backend
+    networks:
+      - my_finance_network
+  my_finance_nginx:
+    image: nginx:alpine
+    container_name: my_finance_nginx
+    tty: true
+    ports:
+      - "8100:80"
+    volumes:
+      - ./backend:/var/www/backend
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - my_finance_network
+    depends_on:
+      - my_finance_backend
+  my_finance_db:
+    image: mysql:5.7
+    container_name: my_finance_db
+    environment:
+      MYSQL_DATABASE: my_finance
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: admin
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./mysql/my_finance_db:/docker-entrypoint-initdb.d
+    networks:
+      - my_finance_network
+  my_finance_frontend:
+    image: my_finance_frontend
+    container_name: my_finance_frontend
+    build:
+      context: ./frontend
+      dockerfile: ./../FrontDockerfile
+    tty: true
+    ports:
+      - "8102:5173"
+    volumes:
+      - ./frontend:/var/www/frontend
+    networks:
+      - my_finance_network
+networks:
+  my_finance_network:
+    driver: bridge
