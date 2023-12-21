@@ -1,0 +1,55 @@
+.settings {
+    .header {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: #eee;
+        padding: 16px 16px 16px;
+
+        .title {
+            color: #424242;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24px;
+            letter-spacing: 0.18px;
+            margin-bottom: 28px;
+        }
+
+        .account-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+
+            .avatar {
+                width: 48px;
+                height: 48px;
+                background-color: #fff;
+                border-radius: 24px;
+                margin-right: 12px;
+                line-height: 48px;
+                text-align: center;
+                font-size: 25px;
+                display: inline-block;
+            }
+
+
+        }
+    }
+
+    .settings-list {
+        margin-top: 160px;
+        padding: 16px 16px 16px;
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+
+            svg {
+                margin-right: 10px;
+            }
+        }
+    }
+}

@@ -1,47 +1,51 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <auth-index v-if="!isAuthenticated"/>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="container" v-else>
+        <div class="row">
+            <div class="col content">
+                <history-index v-if="activePage === 'history'"/>
+                <home-index v-if="activePage === 'home'"/>
+                <settings-index v-if="activePage === 'settings'"/>
+            </div>
+        </div>
+
+        <div class="row nav">
+            <div class="col nav-item" @click="activePage = 'history'" :class="{active: activePage === 'history'}">
+                <font-awesome-icon icon="bars"/>
+                <span>History</span>
+            </div>
+            <div class="col nav-item" @click="activePage = 'home'" :class="{active: activePage === 'home'}">
+                <font-awesome-icon icon="home"/>
+                <span>Home</span>
+            </div>
+            <div class="col nav-item" @click="activePage = 'settings'" :class="{active: activePage === 'settings'}">
+                <font-awesome-icon icon="gear"/>
+                <span>Settings</span>
+            </div>
+        </div>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+
+import AuthIndex from "@/components/auth/AuthIndex.vue";
+import HistoryIndex from "@/components/history/HistoryIndex.vue";
+import HomeIndex from "@/components/home/HomeIndex.vue";
+import SettingsIndex from "@/components/settings/SettingsIndex.vue";
+
+export default {
+    components: {SettingsIndex, HomeIndex, HistoryIndex, AuthIndex},
+    data() {
+        return {
+            activePage: 'home', // history, settings
+        }
+    },
+    computed: {
+        isAuthenticated() {
+            // TODO: make it
+            return true;
+        }
+    }
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+</script>

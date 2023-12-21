@@ -1,0 +1,58 @@
+    .auth-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #424242;
+
+        .brand-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .logo {
+                width: 86px;
+                height: 86px;
+                border-radius: 43px;
+                background-image: url("./images/kitty-logo.png");
+                margin-bottom: 10px;
+            }
+
+            .title  {
+                font-size: 24px;
+                font-weight: 700;
+            }
+        }
+
+        .form-box {
+            .login-form,
+            .register-form {
+                margin-top: 25px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h3 {
+                    margin-bottom: 12px;
+                    font-size: 20px;
+                }
+
+                &>button {
+                    margin-top: 12px;
+                }
+            }
+
+            * {
+                margin-bottom: 8px;
+            }
+
+            .description-box {
+                margin-top: 25px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+    }
