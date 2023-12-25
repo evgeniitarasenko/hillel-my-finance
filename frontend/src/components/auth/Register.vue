@@ -16,6 +16,9 @@
 
 <script>
 
+import {mapStores} from "pinia";
+import {useAccountStore} from "@/stores/account.js";
+
 export default {
     data() {
         return {
@@ -27,9 +30,14 @@ export default {
             }
         }
     },
+    computed: {
+        ...mapStores(useAccountStore),
+    },
     methods: {
         register() {
-            // TODO: make it
+            axios.post(`/register`, this.registerData).then((response) => {
+                this.accountStore.fetchMyAccount();
+            });
         },
         goToLogin() {
             this.$emit('goToLogin');

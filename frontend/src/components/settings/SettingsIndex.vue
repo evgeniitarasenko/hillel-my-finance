@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item" @click="logout">
                 <div class="title">
                     <font-awesome-icon icon="right-from-bracket"/>
                     Logout
@@ -58,9 +58,22 @@
 
 <script>
 
+import {mapStores} from "pinia";
+import {useAccountStore} from "@/stores/account.js";
+
 export default {
     data() {
         return {}
     },
+    computed: {
+        ...mapStores(useAccountStore),
+    },
+    methods: {
+        logout() {
+            axios.post(`${import.meta.env.VITE_BASE_URL}/logout`).then(() => {
+                this.accountStore.fetchMyAccount();
+            });
+        }
+    }
 }
 </script>

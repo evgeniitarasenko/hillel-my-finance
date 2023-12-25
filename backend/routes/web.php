@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/my-account', function () {
+    return \Illuminate\Support\Facades\Auth::user();
+})->middleware('auth');

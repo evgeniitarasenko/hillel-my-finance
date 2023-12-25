@@ -7,25 +7,32 @@
 
         <div class="description-box">
             <div>Don’t have an account?</div>
-            <button type="button" class="btn btn-outline-secondary"  @click="goToRegister">Sign Up</button>
+            <button type="button" class="btn btn-outline-secondary" @click="goToRegister">Sign Up</button>
         </div>
     </div>
 </template>
 
 <script>
+import {mapStores} from "pinia";
+import {useAccountStore} from "@/stores/account.js";
 
 export default {
     data() {
         return {
             loginData: {
-                email: null,
-                password: null,
+                email: 'test@test.com',
+                password: '12345678',
             }
         }
     },
+    computed: {
+        ...mapStores(useAccountStore),
+    },
     methods: {
         login() {
-            // TODO: make it
+            axios.post(`/login`, this.loginData).then((response) => {
+                this.accountStore.fetchMyAccount();
+            });
         },
         goToRegister() {
             this.$emit('goToRegister');

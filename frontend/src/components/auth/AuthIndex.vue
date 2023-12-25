@@ -13,7 +13,7 @@
 </template>
 
 <script>
-
+import axios from "axios";
 import Login from "@/components/auth/Login.vue";
 import Register from "@/components/auth/Register.vue";
 
@@ -24,5 +24,8 @@ export default {
             activePage: 'login', // register
         }
     },
+    created() {
+
+    }
 }
 </script>
