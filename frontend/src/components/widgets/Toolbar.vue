@@ -5,12 +5,15 @@
             <span class="title">Kitty</span>
         </div>
         <div class="col-auto">
-            <div class="account-icon">M</div>
+            <div class="account-icon">{{ accountStore.account.name.slice(0, 1) }}</div>
         </div>
     </div>
 </template>
 
 <script>
+
+import {mapStores} from "pinia";
+import {useAccountStore} from "@/stores/account.js";
 
 export default {
     data() {
@@ -18,5 +21,8 @@ export default {
 
         }
     },
+    computed: {
+        ...mapStores(useAccountStore)
+    }
 }
 </script>

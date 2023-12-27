@@ -4,10 +4,10 @@
             <h2 class="title">Settings</h2>
 
             <div class="account-box">
-                <div class="avatar">M</div>
+                <div class="avatar">{{ accountStore.account.name.slice(0, 1) }}</div>
                 <div class="contacts">
-                    <div class="name">Evgenii Tarasenko</div>
-                    <div class="email">evgenii.tarasenko@gmail.com</div>
+                    <div class="name">{{ accountStore.account.name }}</div>
+                    <div class="email">{{ accountStore.account.email }}</div>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         logout() {
-            axios.post(`${import.meta.env.VITE_BASE_URL}/logout`).then(() => {
+            axios.post(`/logout`).then(() => {
                 this.accountStore.fetchMyAccount();
             });
         }
