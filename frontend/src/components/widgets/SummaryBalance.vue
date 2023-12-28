@@ -1,7 +1,7 @@
 <template>
     <div class="row summary-balance">
         <div class="col">
-            <div class="summary-item expenses">
+            <div class="summary-item expenses" @click="coreStore.state = 'expenses'">
                 <font-awesome-icon icon="coins"/>
                 <div class="amount">-12 000</div>
                 <div class="description">Expenses</div>
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="summary-item income">
+            <div class="summary-item income" @click="coreStore.state = 'incomes'">
                 <font-awesome-icon icon="building-columns"/>
                 <div class="amount">+12 000</div>
                 <div class="description">Income</div>
@@ -27,6 +27,8 @@
 <script>
 
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {mapStores} from "pinia";
+import {useCoreStore} from "@/stores/core.js";
 
 export default {
     components: {FontAwesomeIcon},
@@ -35,5 +37,8 @@ export default {
 
         }
     },
+    computed: {
+        ...mapStores(useCoreStore),
+    }
 }
 </script>

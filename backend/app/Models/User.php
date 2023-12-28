@@ -12,6 +12,58 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected static function booted(): void
+    {
+        static::created(function (User $user) {
+            $defaultCategories = [
+                [
+                    'title' => 'Salary',
+                    'icon' => 'coins',
+                    'type' => 'incomes',
+                ],
+                [
+                    'title' => 'Presents',
+                    'icon' => 'gift',
+                    'type' => 'incomes',
+                ],
+                [
+                    'title' => 'Other',
+                    'icon' => 'star',
+                    'type' => 'incomes',
+                ],
+                [
+                    'title' => 'Home',
+                    'icon' => 'house',
+                    'type' => 'expenses',
+                ],
+                [
+                    'title' => 'Car',
+                    'icon' => 'car',
+                    'type' => 'expenses',
+                ],
+                [
+                    'title' => 'Food',
+                    'icon' => 'utensils',
+                    'type' => 'expenses',
+                ],
+                [
+                    'title' => 'Other',
+                    'icon' => 'star',
+                    'type' => 'expenses',
+                ],
+            ];
+
+            foreach ($defaultCategories as $category) {
+                Category::create([
+                    'user_id' => $user->id,
+                    'title' => $category['title'],
+                    'icon' => $category['icon'],
+                    'type' => $category['type'],
+                ]);
+            }
+        });
+    }
+
     /**
      * The attributes that are mass assignable.
      *

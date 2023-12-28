@@ -1,42 +1,71 @@
 .day {
-    margin: 16px 16px 0;
-    border-radius: 8px;
-    border: 1px solid #E0E0E0;
-    padding: 16px;
+  margin: 16px 16px 0;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+  padding: 16px;
 
-    .day-header {
-        justify-content: space-between;
+  .day-header {
+    justify-content: space-between;
 
-        .summary {
-            text-align: left;
-        }
+    .summary {
+      text-align: left;
     }
+  }
 }
 
 .transaction {
-    margin-top: 18px;
-    justify-content: space-between;
+  margin-top: 18px;
+  justify-content: space-between;
+  align-items: center;
+
+  .general {
+    display: flex;
     align-items: center;
 
-    .general {
-        display: flex;
-        align-items: center;
-
-        .icon-box {
-            margin-right: 8px;
-        }
+    .icon-box {
+      margin-right: 8px;
     }
+  }
 }
 
 .add-transaction-button {
-    position: fixed;
-    bottom: 92px;
-    margin: 0 auto;
-    line-height: 48px;
-    border-radius: 24px;
-    background-color: #007BEF;
-    color: #fff;
-    padding: 0 12px;
-    left: 50%;
-    transform: translateX(-50%);
+  position: fixed;
+  bottom: 92px;
+  margin: 0 auto;
+  line-height: 48px;
+  border-radius: 24px;
+  background-color: #007BEF;
+  color: #fff;
+  padding: 0 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.transaction-form-box {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  .transaction-form {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    width: 100vw;
+    padding: 16px;
+    text-align: center;
+
+
+    .category-box {
+      text-align: left;
+    }
+  }
+
+
 }
