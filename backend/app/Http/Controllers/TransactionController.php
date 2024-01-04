@@ -69,6 +69,6 @@ class TransactionController extends Controller
 
         $transaction->delete();
 
-        response()->json([]);
+        return response()->json([]);
     }
 }

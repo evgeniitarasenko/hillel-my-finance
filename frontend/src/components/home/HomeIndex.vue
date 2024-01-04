@@ -58,8 +58,10 @@ export default {
     },
     methods: {
         addToCategory(category) {
-            this.transactionsStore.formTransaction.category_id = category.id;
-            this.transactionsStore.formTransaction.type = category.type;
+            this.transactionsStore.formTransaction = {
+                category_id: category.id,
+                type: category.type,
+            };
 
             this.transactionsStore.showForm = true;
         }

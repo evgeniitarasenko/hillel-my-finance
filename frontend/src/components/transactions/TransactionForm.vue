@@ -9,7 +9,7 @@
                     {{ category.title }}
                 </div>
 
-                <a href="#"><font-awesome-icon icon="trash"/></a>
+                <a v-if="transactionsStore.formTransaction.id" href="#" @click="transactionsStore.remove()"><font-awesome-icon icon="trash"/></a>
             </div>
 
             <input
