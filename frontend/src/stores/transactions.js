@@ -21,7 +21,9 @@ export const useTransactionsStore = defineStore('transactions', {
         },
         async save() {
             if (this.formTransaction.id) {
-
+                await axios.put(`/transactions/${this.formTransaction.id}`, this.formTransaction).then((response) => {
+                    this.transactions.push(response.data);
+                });
             } else {
                 await axios.post('/transactions', this.formTransaction).then((response) => {
                     this.transactions.push(response.data);

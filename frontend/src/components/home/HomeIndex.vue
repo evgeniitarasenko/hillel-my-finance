@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <transaction-form></transaction-form>
+    <transaction-form/>
 </template>
 
 <script>

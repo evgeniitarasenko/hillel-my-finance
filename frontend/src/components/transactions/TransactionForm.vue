@@ -34,7 +34,9 @@
             }"/>
             <div id="transaction-form-description" class="invalid-feedback">{{ getError('description') }}</div>
 
-            <button type="button" class="btn btn-primary" @click="transactionsStore.save()">Add</button>
+            <button type="button" class="btn btn-primary" @click="transactionsStore.save()">
+                {{ transactionsStore.formTransaction.id ? 'Edit' : 'Add' }}
+            </button>
         </div>
     </div>
 </template>

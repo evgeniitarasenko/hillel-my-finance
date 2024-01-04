@@ -41,7 +41,7 @@ class TransactionController extends Controller
 
     public function update(Request $request, Transaction $transaction): JsonResponse
     {
-        $data = $request->only('title', 'icon', 'type');
+        $data = $request->only('amount', 'description', 'type', 'category_id');
 
         Validator::make($data, [
             'amount' => ['required', 'integer', 'min:1'],
