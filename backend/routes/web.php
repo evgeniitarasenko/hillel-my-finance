@@ -21,6 +21,17 @@ Route::get('/my-account', function () {
     return \Illuminate\Support\Facades\Auth::user();
 })->middleware('auth');
 
+Route::put('/my-account', function () {
+    $path = request()->file('avatar')->store('avatars');
+    $user = \Illuminate\Support\Facades\Auth::user();
+
+    $user->avatar = $path;
+    $user->name = request()->input('name');
+    $user->save();
+
+    return $user;
+})->middleware('auth');
+
 Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index'])->middleware('auth');
 Route::post('/categories', [\App\Http\Controllers\CategoryController::class, 'store'])->middleware('auth');
 Route::put('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'update'])->middleware('auth');
