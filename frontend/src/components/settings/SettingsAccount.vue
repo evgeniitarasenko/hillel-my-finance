@@ -39,7 +39,7 @@ export default {
             formData.append("name", this.account.name);
             formData.append("email", this.account.email);
 
-            axios.put('/my-account', formData, {
+            axios.post('/my-account', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

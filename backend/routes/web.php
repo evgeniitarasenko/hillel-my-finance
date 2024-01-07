@@ -21,7 +21,7 @@ Route::get('/my-account', function () {
     return \Illuminate\Support\Facades\Auth::user();
 })->middleware('auth');
 
-Route::put('/my-account', function (\Illuminate\Http\Request $request) {
+Route::post('/my-account', function (\Illuminate\Http\Request $request) {
     logger($request->allFiles());
     logger($_FILES);
     $path = $request->file('avatar')->store('avatars');
