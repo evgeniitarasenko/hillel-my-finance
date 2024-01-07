@@ -13,7 +13,7 @@
         </div>
 
         <div class="settings-list">
-            <div class="settings-item">
+            <div class="settings-item" @click="activePage = 'account'">
                 <div class="title">
                     <font-awesome-icon icon="user"/>
                     Manage Account
@@ -35,17 +35,6 @@
                 </div>
             </div>
 
-            <div class="settings-item">
-                <div class="title">
-                    <font-awesome-icon icon="question"/>
-                    Frequently asked questions
-                </div>
-
-                <div class="icon">
-                    <font-awesome-icon icon="angle-right"/>
-                </div>
-            </div>
-
             <div class="settings-item" @click="logout">
                 <div class="title">
                     <font-awesome-icon icon="right-from-bracket"/>
@@ -54,17 +43,23 @@
             </div>
         </div>
     </div>
+
+    <settings-account v-if="activePage === 'account'" @close="activePage = null"/>
 </template>
 
 <script>
 
 import {mapStores} from "pinia";
 import {useAccountStore} from "@/stores/account.js";
+import SettingsAccount from "@/components/settings/SettingsAccount.vue";
 
 export default {
     data() {
-        return {}
+        return {
+            activePage: null,
+        }
     },
+    components: {SettingsAccount},
     computed: {
         ...mapStores(useAccountStore),
     },
