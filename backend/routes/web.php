@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::get('/my-account', function () {
 })->middleware('auth');
 
 Route::post('/my-account', function (\Illuminate\Http\Request $request) {
-    $path = $request->file('avatar')->store('public/avatars');
+    $path = $request->file('avatar')->store('public');
     $user = \Illuminate\Support\Facades\Auth::user();
 
     $user->avatar = $path;
