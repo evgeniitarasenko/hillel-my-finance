@@ -23,11 +23,12 @@ Route::get('/my-account', function () {
 
 Route::put('/my-account', function (\Illuminate\Http\Request $request) {
     logger($request->allFiles());
+    logger($_FILES);
     $path = $request->file('avatar')->store('avatars');
     $user = \Illuminate\Support\Facades\Auth::user();
 
     $user->avatar = $path;
-    $user->name = request()->input('name');
+    $user->name = $request->input('name');
     $user->save();
 
     return $user;
