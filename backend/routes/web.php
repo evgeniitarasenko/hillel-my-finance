@@ -26,7 +26,7 @@ Route::post('/my-account', function (\Illuminate\Http\Request $request) {
     $path = $request->file('avatar')->store('public');
     $user = \Illuminate\Support\Facades\Auth::user();
 
-    $user->avatar = $path;
+    $user->avatar = explode('/', $path)[1];
     $user->name = $request->input('name');
     $user->save();
 
