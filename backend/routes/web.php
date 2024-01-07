@@ -22,9 +22,7 @@ Route::get('/my-account', function () {
 })->middleware('auth');
 
 Route::post('/my-account', function (\Illuminate\Http\Request $request) {
-    logger($request->allFiles());
-    logger($_FILES);
-    $path = $request->file('avatar')->store('avatars');
+    $path = $request->file('avatar')->store('public/avatars');
     $user = \Illuminate\Support\Facades\Auth::user();
 
     $user->avatar = $path;
