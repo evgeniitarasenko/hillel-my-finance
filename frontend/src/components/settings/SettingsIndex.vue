@@ -4,7 +4,10 @@
             <h2 class="title">Settings</h2>
 
             <div class="account-box">
-                <div class="avatar">{{ accountStore.account.name.slice(0, 1) }}</div>
+                <div class="avatar" v-if="!accountStore.account.avatar">{{ accountStore.account.name.slice(0, 1) }}</div>
+                <div class="avatar" v-if="accountStore.account.avatar">
+                    <img :src="`${baseUrl}/storage/${accountStore.account.avatar}`" alt="">
+                </div>
                 <div class="contacts">
                     <div class="name">{{ accountStore.account.name }}</div>
                     <div class="email">{{ accountStore.account.email }}</div>
@@ -62,6 +65,11 @@ export default {
     components: {SettingsAccount},
     computed: {
         ...mapStores(useAccountStore),
+        baseUrl: {
+            get() {
+                return import.meta.env.VITE_BASE_URL;
+            }
+        }
     },
     methods: {
         logout() {
