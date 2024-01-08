@@ -13,6 +13,7 @@ class Category extends Model
         'user_id',
         'title',
         'type',
-        'icon'
+        'icon',
+        'color'
     ];
 }

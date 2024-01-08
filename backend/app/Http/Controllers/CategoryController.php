@@ -21,30 +21,31 @@ class CategoryController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $data = $request->only('title', 'icon', 'type');
+        $data = $request->only('title', 'icon', 'type', 'color');
 
         Validator::make($data, [
             'title' => ['required', 'string', 'max:50', Rule::unique('categories', 'title')->where(fn ($query) => $query->where('user_id', Auth::id()))],
             'icon' => ['nullable', 'string', 'max:20'],
             'type' => ['required', 'string', 'in:incomes,expenses'],
+            'color' => ['nullable', 'string'],
         ])->validate();
 
         $data['user_id'] = Auth::id();
 
         $category = Category::create($data);
 
-
         return response()->json($category);
     }
 
     public function update(Request $request, Category $category): JsonResponse
     {
-        $data = $request->only('title', 'icon', 'type');
+        $data = $request->only('title', 'icon', 'type', 'color');
 
         Validator::make($data, [
             'title' => ['required', 'string', 'max:50', Rule::unique('categories', 'title')->where(fn ($query) => $query->where('user_id', Auth::id()))->ignore($category->id)],
             'icon' => ['nullable', 'string', 'max:20'],
             'type' => ['required', 'string', 'in:incomes,expenses'],
+            'color' => ['nullable', 'string'],
         ])->validate();
 
         if ($category->user_id !== Auth::id()) {
