@@ -13,8 +13,22 @@ class TransactionController extends Controller
 {
     public function index(): JsonResponse
     {
-        $transactions = Transaction::query()->where('user_id', Auth::id())
-            ->orderBy('spent_at', 'desc')->get();
+        $monthId = request()->input('month_id');
+
+        if ($monthId) {
+            $currentDate = Carbon::createFromFormat('Ym', $monthId);
+        } else {
+            $currentDate = Carbon::now();
+        }
+
+        $dateFrom = $currentDate->format('Y-m-01 00:00:00');
+        $dateTo = $currentDate->addMonth()->format('Y-m-01 00:00:00');
+
+        $transactions = Transaction::query()
+            ->where('user_id', Auth::id())
+            ->whereBetween('spent_at', [$dateFrom, $dateTo])
+            ->orderBy('spent_at', 'desc')
+            ->get();
 
         return response()->json($transactions);
     }
